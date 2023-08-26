@@ -37,7 +37,7 @@
 
 This is a video conferencing application that is used to host virtual meetings, chats and audio conferencing. 
 The major tech stacks used are *PeerJS, socket.io, Google Firebase and Express*.
-Website: https://bit.ly/video-chat-
+
 
 ### Built With
 <img align="left" alt ="C++"  width="45px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png" >
