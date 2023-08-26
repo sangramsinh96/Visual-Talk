@@ -174,4 +174,4 @@ This is an example of how to list things you need to use the software and how to
 
 Sangramsinh V Patil - [@sangramsinh patil](https://www.linkedin.com/in/sangramsinh-patil-762161221/) - p.sangramsinh@iitg.ac.in
 
-Project Link: [https://github.com/PulkitChangoiwala/Video_Chat_App](https://github.com/PulkitChangoiwala/Video_Chat_App)
+Project Link: [@Visual Talk](https://github.com/sangramsinh96/Visual-Talk)
