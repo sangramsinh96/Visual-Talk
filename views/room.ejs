@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conference</title>
+    <script>
+        const RoomId = '<%= (typeof roomId != "undefined" ? roomId : "") %>';
+        const meetingName = '<%= (typeof roomName != "undefined" ? roomName : "") %>';
+        const myName = '<%= (typeof userName != "undefined" ? userName : "") %>';
+
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css"> 
+    <script defer src="https://kit.fontawesome.com/c939d0e917.js"></script>
+
+    <script defer src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+    <script src="/socket.io/socket.io.js" defer></script>         
+    <script src = "/script.js" defer></script>
+  
+    <style>
+        #video-grid-1{
+           display: flex;
+           justify-content: center;
+           flex-wrap: wrap;
+           padding:2%;
+        }
+        #video-grid{
+           display: flex;
+           justify-content: center;
+           flex-wrap: wrap;
+        }
+        video{
+           height: 95%;
+           width: 80%;
+           object-fit: cover;
+           margin:1%;
+           border-radius: 10px;
+           cursor: pointer;
+           outline-color: black;
+           
+        }
+     </style>
+</head>
+<div id="whole">
+   <div id="meeting-name">
+       <h3>My meeting</h3>
+   </div>
+   <div id="copy-link"><button type="button" class="copyMeetCode" onclick="copyToClipBoard()">Copy Meet Code</button></div>
+   <!-- <div id="copy-link" >
+       <a onclick="copyToClipBoard()">Copy Meet Code</a>     
+   </div> -->
+
+   <div id="video-container">
+       
+                  
+    <div class="video-grids" id="video-grid-1" style="display:flex;">
+                                    
+    </div>
+
+       <div id="quickMessage" class = "popUp_container">
+         <div id="qM" class = "popUp">
+            <b id = "qMText">Quick Message</b>
+         </div>
+      </div>
+   </div>
+
+<div id="control-icons-container">
+   <ul>
+      
+       <li class="control-icons-li" id="screen-control-li" onclick="shareScreen()">
+           <img id="screen-control" src="/icons/Screen.png" class="control-icons">
+       </li>
+       <li class="control-icons-li" id="video-control-li" onclick="playStop()">
+           <img id="video-control" src="/icons/Camera.png" class="control-icons">
+       </li>
+       <li class="control-icons-li" id="audio-control-li" onclick="muteUnmute()">
+           <img id="audio-control" src="/icons/Audio.png" class="control-icons">
+       </li>
+       <li>
+       
+   </li>
+</ul>
+</div>
+<div id="end-call-div"><button type="button" class="btn btn-danger" id="end-call" style="border-radius:10px" onclick="leaveMeeting()">END CALL</button></div>
+   <div id="control-icons-container2">
+       <ul>
+       <li class="control-icons-li" onmouseover="emojiappear()" onmouseout="emojidisappear()">
+           <img id="emoji-control" src="/icons/emoji.png" class="control-icons">
+       </li>
+       <li class="control-icons-li"  onmouseover="quickChatappear()" onmouseout="quickChatdisappear()">
+           
+           <img id="quickChat-control" src="/icons/quickChat.png" class="control-icons">
+       </li>
+       <li class="control-icons-li" onclick = "raiseHand()">
+           <img  id="" src="/icons/hand.png" class="control-icons">
+       </li>
+       
+
+   </ul>
+ </div>
+  
+</div>
+   <div id="buttons-container">
+      <img src="icons/chat-activate.svg" id="chat" data-clicked="no">
+      <img onclick="participantButtonEventListener()" src="icons/participant-activate.svg" id="participants" data-clicked="no">
+   </div>
+
+   
+  
+   <div id="chats-container">
+      <div style="width:80%;margin:auto">
+         <div style="display:flex" id="chat-title">
+           <img src="icons/Chat.png">
+           <span style="color:white;">Chats</span>
+         </div>
+       <hr style="color:rgb(70, 68, 68)">
+      <div id="main-chat-container" class="chat-content"> 
+            <!-- <img src="icons/Add.png"> -->   
+            <!-- <div class="remote-chat-content"> 
+                     <div>
+                        <small>Person A</small><br>
+                        <div class="chat-message">Hey buddy!</div>
+                     </div>
+                     
+               </div> -->
+
+       </div>
+
+
+     
+    </div>
+    <div class="message_input_container">
+         <input id="chat_message" autocomplete="off" type="text" placeholder="Type message here...">
+      </div>
+    </div>
+   
+   <div id="participants-container">
+
+       <div style="width:80%;margin:auto">
+            <div style="display:flex" id="chat-title">
+             <img src="icons/Add.png">
+             <span style="color:white;">Participants</span>
+         </div>
+         <hr style="color:rgb(70, 68, 68)">
+            <div id="participants-content">
+                <!-- <div class="participants">
+                    <img src="icons/Add.png">
+                    <span class="participant-name">Person A</span>
+                    <div class="participants-control">
+                        <img src="icons/Audio.png">
+                        <img src="icons/Camera.png">
+                        <img src="">
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- emoji div -->
+<div id="emoji-div" onmouseover="emojiappear()" onmouseout="emojidisappear()">
+   <div class="box2 sb9">
+       <div id="emojis-container" style="display:flex;">
+      <center>
+        <img onclick="emojiReaction(1)" src="icons/emojis/1.png"  style="width:2vw;">
+        <img onclick="emojiReaction(2)" src="icons/emojis/2.png" style="width:2.5vw">
+        <img onclick="emojiReaction(3)" src="icons/emojis/3.png" style="width:2vw">
+        <img onclick="emojiReaction(4)" src="icons/emojis/4.png" style="width:2vw">
+        <img onclick="emojiReaction(5)" src="icons/emojis/5.png" style="width:2vw">
+      </center>
+
+       </div>
+   </div>
+</div>
+
+<div id="quickChat-div" onmouseover="quickChatappear()" onmouseout="quickChatdisappear()">
+   <div class="box3 sb10" style="width: fit-content; position: relative;">
+       <div id="emojis-container" style="display:flex;">
+      <center>
+         <div onclick="quickMessage(1)"  style="cursor: pointer;">Am I Audible?</div>
+         <div onclick="quickMessage(2)"  style="cursor: pointer;">Yes</div>
+         <div onclick="quickMessage(3)"  style="cursor: pointer;">No</div>
+      </center>
+
+       </div>
+   </div>
+</div>
+</body>
+</html>
