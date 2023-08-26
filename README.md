@@ -1,6 +1,6 @@
 <br />
 <p align="center">
-  <h1 align="center">Video Chat App</h1>
+  <h1 align="center">Visual Talk</h1>
 <!--   <h3 align="center" > Microsoft Engage Mentorship Program 2021 </h3> -->
   
 </p>
@@ -172,6 +172,6 @@ This is an example of how to list things you need to use the software and how to
 <!-- CONTACT -->
 ## Contact
 
-Pulkit Changoiwala - [@pulkitchangoiwala](https://www.linkedin.com/in/pulkitchangoiwala/) - changoiw@iitg.ac.in
+Sangramsinh V Patil - [@sangramsinh patil]([(https://www.linkedin.com/in/sangramsinh-patil-762161221/)]) - p.sangramsinh@iitg.ac.in
 
 Project Link: [https://github.com/PulkitChangoiwala/Video_Chat_App](https://github.com/PulkitChangoiwala/Video_Chat_App)
